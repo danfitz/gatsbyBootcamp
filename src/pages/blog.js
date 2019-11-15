@@ -15,7 +15,7 @@ const BlogPage = () => {
         nodes {
           title
           slug
-          publishedDate (formatString:"MMMM Do, YYYY")
+          publishedDate(formatString: "MMMM Do, YYYY")
           id
         }
       }
