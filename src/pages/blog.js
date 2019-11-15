@@ -1,14 +1,47 @@
 import React from "react";
-import classes from "./blog.css";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import classes from "./blog.module.scss";
 import Layout from "../components/Layout"; 
 
 const BlogPage = () => {
+  const mdData = useStaticQuery(graphql`
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            frontmatter {
+              title
+              date
+            }
+            id
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const postsJSX = mdData.allMarkdownRemark.edges.map(post => {
+    return (
+      <li key={post.node.id}>
+        <Link to={`/blog/${post.node.fields.slug}`}>
+          <h2>
+              {post.node.frontmatter.title}
+          </h2>
+          <p>{post.node.frontmatter.date}</p>
+        </Link>
+      </li>
+    );
+  });
+
   return (
     <Layout>
       <h1>Blog</h1>
-      <hr />
-      <h2>Post #1</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem qui cum magnam blanditiis distinctio modi ad maiores ea est! Quibusdam, dolorum veritatis eaque nihil sit magnam qui neque. Temporibus reprehenderit aperiam quos nulla necessitatibus fugit? Qui cupiditate laudantium exercitationem magnam ullam enim a corrupti incidunt, in ad dolorum consectetur modi.</p>
+      <ol className={classes.BlogList}>
+        {postsJSX}
+      </ol>
     </Layout>
   );
 };

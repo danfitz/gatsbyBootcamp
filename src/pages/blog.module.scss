@@ -1,0 +1,32 @@
+.BlogList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.BlogList li {
+  margin: 1rem 0;
+  background: #f4f4f4;
+  
+  a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+
+    &:hover {
+      background: #e4e4e4;
+    }
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: #777;
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+}

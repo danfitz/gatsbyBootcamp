@@ -1,8 +1,18 @@
 import React from "react";
-// import classes from "./Footer.css";
+import classes from "./Footer.module.scss";
+import { graphql, useStaticQuery } from "gatsby";
 
 const Footer = () => {
-  return <footer>Copyright | Dan Fitz </footer>;
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          author
+        }
+      }
+    }
+  `);
+  return <footer className={classes.Footer}>Copyright | {data.site.siteMetadata.author}</footer>;
 };
 
 export default Footer;
