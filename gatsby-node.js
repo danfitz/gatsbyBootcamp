@@ -12,10 +12,6 @@ module.exports.onCreateNode = ({ node, actions }) => {
       value: slug
     });
   };
-
-  if (node.internal.type === "SitePage") {
-    console.log(node);
-  }
 };
 
 module.exports.createPages = async ({ graphql, actions }) => {

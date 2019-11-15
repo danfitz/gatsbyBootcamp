@@ -6,31 +6,30 @@ import Layout from "../components/Layout";
 const BlogPage = () => {
   const mdData = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              title
-              date
-            }
-            id
-            fields {
-              slug
-            }
-          }
+      allContentfulBlogPost (
+        sort: {
+          fields: publishedDate,
+          order: DESC
+        }
+      ) {
+        nodes {
+          title
+          slug
+          publishedDate (formatString:"MMMM Do, YYYY")
+          id
         }
       }
     }
   `);
 
-  const postsJSX = mdData.allMarkdownRemark.edges.map(post => {
+  const postsJSX = mdData.allContentfulBlogPost.nodes.map(post => {
     return (
-      <li key={post.node.id}>
-        <Link to={`/blog/${post.node.fields.slug}`}>
+      <li key={post.id}>
+        <Link to={`/blog/${post.slug}`}>
           <h2>
-              {post.node.frontmatter.title}
+              {post.title}
           </h2>
-          <p>{post.node.frontmatter.date}</p>
+          <p>{post.publishedDate}</p>
         </Link>
       </li>
     );
