@@ -36,7 +36,7 @@ const BlogPage = () => {
   });
 
   return (
-    <Layout>
+    <Layout title="Blog">
       <h1>Blog</h1>
       <ol className={classes.BlogList}>
         {postsJSX}

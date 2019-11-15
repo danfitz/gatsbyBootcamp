@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 const ContactPage = () => {
   return (
-    <Layout>
+    <Layout title="Contact">
       <h1>Contact Me</h1>
       <form onSubmit={ e => e.preventDefault() }>
         <label for="name">Input name</label>
